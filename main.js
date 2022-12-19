@@ -1,5 +1,7 @@
 const main = document.querySelector(".main")
 var div = document.createElement("div");
+main.append(div);
+div.innerHTML = "Output"
 
 const btn = document.querySelector('#btn')
 
@@ -30,6 +32,7 @@ async function getCurrencise(firstValute, secondValute, inputNumber) {
     let resultString
 
     if ((resultJSON.Valute[firstValute] == undefined) || (resultJSON.Valute[secondValute] == undefined)) {
+        div.innerHTML = "<span>EROR</span>"
         throw "Некоректная форма записи валюты";
     }
 
@@ -38,7 +41,7 @@ async function getCurrencise(firstValute, secondValute, inputNumber) {
 
     result = (Math.round(result * 100) / 100)
 
-    main.append(div);
+    
 
     div.innerHTML = `${result} ${resultString}`;
 
@@ -50,10 +53,12 @@ function a(input) {
     inputString = input.replace(/\d/g, '').replace(/\s/g, '').toUpperCase()
 
     if (~input.indexOf(inputNumber)) {} else {
+        div.innerHTML = "<span>EROR</span>"
         throw "Некоректная форма записи числа";
     }
 
     if ((inputString.length !== 8) || (inputString.slice(3, 5) !== "IN")) {
+        div.innerHTML = "<span>EROR</span>"
         throw "Некоректная форма записи преобразования";
     }
 
